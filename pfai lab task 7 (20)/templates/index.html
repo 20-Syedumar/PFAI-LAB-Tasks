@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astronomy Picture of the Day</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>🌌 NASA Astronomy Picture of the Day</h1>
+    </header>
+
+    <main class="container">
+        <section class="apod-card">
+            <h2>{{ apod_data.title }}</h2>
+            <p class="date">📅 {{ apod_data.date }}</p>
+
+            {% if apod_data.media_type == "image" %}
+                <img src="{{ apod_data.hdurl }}" alt="{{ apod_data.title }}" class="apod-image">
+            {% else %}
+                <iframe src="{{ apod_data.url }}" frameborder="0" allowfullscreen class="apod-video"></iframe>
+            {% endif %}
+
+            <p class="explanation">{{ apod_data.explanation }}</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Developed by Syed Umar Ali | Flask + NASA API 🚀</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='scripts.js') }}"></script>
+</body>
+</html>
